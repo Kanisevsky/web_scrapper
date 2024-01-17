@@ -1,3 +1,4 @@
+import HeroCarousel from "@/components/HeroCarousel";
 import SearchBar from "@/components/SearchBar";
 import Image from "next/image";
 
@@ -18,8 +19,8 @@ import Image from "next/image";
              </p>
              <SearchBar/>
         </div>
-         HeroCarousel
        </div>
+         <HeroCarousel/>
        <section className="trending-section">
           <h2 className="section-text">Trending</h2>
           <div className="flex flex-wrap gap-x-8 gap-y-16">
