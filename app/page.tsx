@@ -5,7 +5,7 @@ import Image from "next/image";
  const Home = () => {
   return (
    <>
-    <section className="px-6 md:px-20 py-20 border-2 border-red-500">
+    <section className="px-6 md:px-20 py-20">
        <div className="flex max-xl:flex-col gap-16">
         <div className="flex flex-col justify-center">
           <p className="small-text">Smart Shopping Starts Here
@@ -25,7 +25,7 @@ import Image from "next/image";
           <h2 className="section-text">Trending</h2>
           <div className="flex flex-wrap gap-x-8 gap-y-16">
             {["Apple Ipphone", "Book", "Sneakers"].map((product) => (
-              <div>{product}</div>
+              <div key={product}>{product}</div>
             ))}
           </div>
        </section>
