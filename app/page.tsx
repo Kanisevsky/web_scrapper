@@ -18,7 +18,16 @@ import Image from "next/image";
              </p>
              <SearchBar/>
         </div>
+         HeroCarousel
        </div>
+       <section className="trending-section">
+          <h2 className="section-text">Trending</h2>
+          <div className="flex flex-wrap gap-x-8 gap-y-16">
+            {["Apple Ipphone", "Book", "Sneakers"].map((product) => (
+              <div>{product}</div>
+            ))}
+          </div>
+       </section>
     </section>
    </>
   )
