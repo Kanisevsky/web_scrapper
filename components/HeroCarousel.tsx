@@ -1,7 +1,7 @@
 "use client"
-import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
-import { Carousel } from 'react-responsive-carousel';
 import Image from "next/image";
+import { Carousel } from 'react-responsive-carousel';
+import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
 
 const heroImages = [
   {imgUrl: "/assets/images/hero-1.svg", alt:"smart watch"},
@@ -13,11 +13,12 @@ const heroImages = [
 
 function HeroCarousel() {
   return (
-    <Carousel
+    <div className="hero-carousel">
+      <Carousel
       showThumbs={false}
-      autoPlay
+      // autoPlay
       infiniteLoop
-      interval={2000}
+      // interval={2000}
       showArrows={false}
       showStatus={false}
     >
@@ -25,6 +26,9 @@ function HeroCarousel() {
         <Image src={image.imgUrl} alt={image.alt} width={484} height={484} className="object-contain" key={image.alt}/>
       ))}
     </Carousel>
+    <Image src="assets/icons/hand-drawn-arrow.svg" alt="arrow" width={175} height={175} className="max-xl:hidden absolute -left-[15%] bottom-0 z-0"/>
+    </div>
+    
   )
 }
 
