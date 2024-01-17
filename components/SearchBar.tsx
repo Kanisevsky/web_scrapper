@@ -26,6 +26,9 @@ function SearchBar() {
     try {
       setIsLoading(true)
     } catch (error) {
+      console.log(error)
+    }
+    finally{
       setIsLoading(false)
     }
   }
