@@ -29,9 +29,17 @@ export async function scrapedAmazoneProduct(url: string) {
     );
     const originalPrice = extractPrice(
       $("#priceblock_ourprice"),
-      $(".a-price.a-text-price span.a-offscreen")
+      $(".a-price.a-text-price span.a-offscreen"),
+      $("#listPrice"),
+      $("a.size-base.a-color-price")
     );
-    console.log({ title, currentPrice });
+    const outOfStock =
+      $("#availability span").text().trim().toLowerCase() ===
+      "currently unavailable";
+    const image =
+      $("imgBlkFront").attr("data-a-dynamic-image") ||
+      $("landingImage").attr("data-a-dynamic-image");
+    console.log({ title, currentPrice, originalPrice, outOfStock });
   } catch (error: any) {
     throw new Error(`Failed to scrape product: ${error.message}`);
   }
