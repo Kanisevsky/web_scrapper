@@ -6,7 +6,7 @@ const isValidAmazoneProductURl = (url: string) => {
   try {
     const parsedURL = new URL(url)
     const hostname = parsedURL.hostname;
-    if(hostname.includes("amazone.com") || hostname.includes("amazone.") || hostname.includes("amazone")) {
+    if(hostname.includes("amazon.co.uk") || hostname.includes("amazon.") || hostname.includes("amazon")) {
       return true
     }
 
