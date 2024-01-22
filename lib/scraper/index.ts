@@ -27,6 +27,10 @@ export async function scrapedAmazoneProduct(url: string) {
       $("a.size.base.a-color-price"),
       $(".a-button-selected .a-color-base")
     );
+    const originalPrice = extractPrice(
+      $("#priceblock_ourprice"),
+      $(".a-price.a-text-price span.a-offscreen")
+    );
     console.log({ title, currentPrice });
   } catch (error: any) {
     throw new Error(`Failed to scrape product: ${error.message}`);
