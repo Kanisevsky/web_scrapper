@@ -44,15 +44,21 @@ export async function scrapedAmazoneProduct(url: string) {
     const currency = extractCurrency($('.a-price-symbol'));
     const discountRate = $('.savingsPercentage').text().replace(/[-%]/g, '');
 
-    console.log({
+    const data = {
+      url,
+      currency: currency || '£',
+      image: imageUrls[0],
       title,
-      currentPrice,
-      originalPrice,
-      outOfStock,
-      imageUrls,
-      currency,
-      discountRate,
-    });
+      currentPrice: Number(currentPrice),
+      originalPrice: Number(originalPrice),
+      priceHistory: [],
+      discountRate: Number(discountRate),
+      category: 'category',
+      reviewsCount: 100,
+      stars: 4.5,
+      isOutOfStock: outOfStock,
+    };
+    console.log(data);
   } catch (error: any) {
     throw new Error(`Failed to scrape product: ${error.message}`);
   }
