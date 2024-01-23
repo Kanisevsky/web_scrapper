@@ -1,9 +1,11 @@
 'use server';
 import { scrapedAmazoneProduct } from '../scraper';
+import { connectToDB } from '../mongoose';
 export async function scrapeAndStoreProduct(productUrl: string) {
   if (!productUrl) return;
 
   try {
+    connectToDB();
     const scrapedProduct = await scrapedAmazoneProduct(productUrl);
     if (!scrapedProduct) return;
   } catch (error: any) {
