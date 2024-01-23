@@ -1,6 +1,6 @@
 import axios from 'axios';
 import * as cheerio from 'cheerio';
-import { extractPrice, extractCurrency } from '../utils';
+import { extractPrice, extractCurrency, extractDescription } from '../utils';
 export async function scrapedAmazoneProduct(url: string) {
   if (!url) return;
 
@@ -43,20 +43,24 @@ export async function scrapedAmazoneProduct(url: string) {
     const imageUrls = Object.keys(JSON.parse(images));
     const currency = extractCurrency($('.a-price-symbol'));
     const discountRate = $('.savingsPercentage').text().replace(/[-%]/g, '');
-
+    const description = extractDescription($);
     const data = {
       url,
       currency: currency || '£',
       image: imageUrls[0],
       title,
-      currentPrice: Number(currentPrice),
-      originalPrice: Number(originalPrice),
+      currentPrice: Number(currentPrice) || Number(originalPrice),
+      originalPrice: Number(originalPrice) || Number(currentPrice),
       priceHistory: [],
       discountRate: Number(discountRate),
       category: 'category',
       reviewsCount: 100,
       stars: 4.5,
       isOutOfStock: outOfStock,
+      description,
+      lowestPrice: Number(currentPrice) || Number(originalPrice),
+      highestPrice: Number(originalPrice) || Number(currentPrice),
+      average: Number(currentPrice) || Number(originalPrice),
     };
     console.log(data);
   } catch (error: any) {
