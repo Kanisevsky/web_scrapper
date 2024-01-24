@@ -1,6 +1,9 @@
 'use server';
 import { scrapedAmazoneProduct } from '../scraper';
 import { connectToDB } from '../mongoose';
+import Product from '../models/product.model';
+import { getAveragePrice, getHighestPrice, getLowestPrice } from '../utils';
+
 export async function scrapeAndStoreProduct(productUrl: string) {
   if (!productUrl) return;
 
@@ -10,7 +13,24 @@ export async function scrapeAndStoreProduct(productUrl: string) {
     if (!scrapedProduct) return;
 
     let product = scrapedProduct;
-    // const existingProduct = await Product
+    const existingProduct = await Product.findOne({ url: scrapedProduct.url });
+    if (existingProduct) {
+      const updatedPriceHistory: any = [
+        ...existingProduct.priceHistory,
+        { price: scrapedProduct.currentPrice },
+      ];
+      product = {
+        ...scrapedProduct,
+        priceHistory: updatedPriceHistory,
+        lowestPrice: getLowestPrice(updatedPriceHistory),
+        highestPrice: getHighestPrice(updatedPriceHistory),
+        averagePrice: getAveragePrice(updatedPriceHistory),
+      };
+    }
+    const newProduct = await Product.findByIdAndUpdate(
+      { url: scrapedProduct.url, product },
+      { upsert: true, new: true }
+    );
   } catch (error: any) {
     throw new Error(`Failed to create/update product: ${error.message}`);
   }
