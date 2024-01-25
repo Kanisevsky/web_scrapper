@@ -1,5 +1,6 @@
 import HeroCarousel from "@/components/HeroCarousel";
 import SearchBar from "@/components/SearchBar";
+import ProductCard from "@/components/ProductCard";
 import Image from "next/image";
 import { getAllProducts } from "@/lib/actions";
 
@@ -29,7 +30,7 @@ import { getAllProducts } from "@/lib/actions";
           <h2 className="section-text">Trending</h2>
           <div className="flex flex-wrap gap-x-8 gap-y-16">
             {allProducts?.map((product) => (
-              <div key={product}>{product}</div>
+              <ProductCard key={product._id} product={product}/>
             ))}
           </div>
        </section>
