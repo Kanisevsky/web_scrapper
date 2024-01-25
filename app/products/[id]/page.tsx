@@ -1,6 +1,9 @@
 
+type Props = {
+  params: {id: string}
+}
 
-function ProductDetails() {
+function ProductDetails({params} : Props) {
   return (
     <div>
       
