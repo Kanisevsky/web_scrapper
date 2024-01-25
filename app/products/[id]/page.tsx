@@ -10,6 +10,8 @@ type Props = {
 const ProductDetails = async ({params: {id}} : Props) => {
   const product = await getProductById(id)
   if(!product) redirect("/")
+  console.log(product);
+  
   return (
     <div className="product-container">
     <div className="flex gap-28 xl:flex-row flex-col">
@@ -33,7 +35,7 @@ const ProductDetails = async ({params: {id}} : Props) => {
           <div className="flex items-center gap-3">
             <div className="product-hearts">
               <Image src="/assets/icons/red-heart.svg" alt="heart" width={28} height={28}/>
-              <p className="text-base font-semibold text-[#D46F77]">{product.reviewsCount}</p>
+              <p className="text-base font-semibold text-[#D46F77]">{product.reviewsCount || "50"}</p>
             </div>
           </div>
         </div>
