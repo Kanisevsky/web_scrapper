@@ -2,6 +2,7 @@ import { getProductById } from "@/lib/actions"
 import { redirect } from "next/navigation"
 import Image from "next/image"
 import Link from "next/link"
+import { formatNumber } from "@/lib/utils"
 
 type Props = {
   params: {id: string}
@@ -56,7 +57,15 @@ const ProductDetails = async ({params: {id}} : Props) => {
           </div>
         </div>
         <div className="product-info">
-          
+          <div className="flex flex-col gap-2">
+            <p className="text-[34px] text-secondary font-bold">
+              {product.currency} {formatNumber(product.currentPrice)}
+            </p>
+            <p className="text-[21px] text-black opacity-50 line-through">
+              {product.currency} {formatNumber(product.originalPrice)}
+            </p>
+          </div>
+          <p></p>
         </div>
       </div>
     </div>
