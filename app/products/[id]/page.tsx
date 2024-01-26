@@ -37,7 +37,26 @@ const ProductDetails = async ({params: {id}} : Props) => {
               <Image src="/assets/icons/red-heart.svg" alt="heart" width={28} height={28}/>
               <p className="text-base font-semibold text-[#D46F77]">{product.reviewsCount || "50"}</p>
             </div>
+            <div className="p-2 bg-white-200 rounded-10 ">
+              <Image
+                src="/assets/icons/bookmark.svg"
+                alt="bookmark"
+                width={20}
+                height={20}
+              />
+            </div>
+             <div className="p-2 bg-white-200 rounded-10 ">
+              <Image
+                src="/assets/icons/share.svg"
+                alt="share"
+                width={20}
+                height={20}
+              />
+            </div>
           </div>
+        </div>
+        <div className="product-info">
+          
         </div>
       </div>
     </div>
