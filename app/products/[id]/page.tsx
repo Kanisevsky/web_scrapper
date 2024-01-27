@@ -4,12 +4,14 @@ import Image from "next/image"
 import Link from "next/link"
 import { formatNumber } from "@/lib/utils"
 import PriceInfoCard from "@/components/PriceInfoCard"
-
+import { getSimilarProducts } from "@/lib/actions"
+import ProductCard from "@/components/ProductCard"
 type Props = {
   params: {id: string}
 }
 
 const ProductDetails = async ({params: {id}} : Props) => {
+  const similarProducts = await getSimilarProducts(id)
   const product = await getProductById(id)
   if(!product) redirect("/")
   console.log(product);
@@ -139,6 +141,16 @@ const ProductDetails = async ({params: {id}} : Props) => {
           <Link href="/" className="text-base text-white">Buy Now</Link>
         </button>
       </div>
+      {similarProducts && similarProducts?.length > 0 && (
+          <div className="py-14 flex flex-col gap-2 w-full">
+              <p className="section-text">Similar Products</p>
+              <div className="flex flex-wrap gap-10 mt-7 w-full">
+                {similarProducts.map((product) => (
+                  <ProductCard key={product._id} product={product}/>
+                ))}
+              </div>
+          </div>
+      )}
     </div>
     </div>
   )
