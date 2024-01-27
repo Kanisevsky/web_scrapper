@@ -2,7 +2,7 @@ import { getProductById } from "@/lib/actions"
 import { redirect } from "next/navigation"
 import Image from "next/image"
 import Link from "next/link"
-import { formatNumber } from "@/lib/utils"
+import { formatNumber, shortenedTextBySentence } from "@/lib/utils"
 import PriceInfoCard from "@/components/PriceInfoCard"
 import { getSimilarProducts } from "@/lib/actions"
 import ProductCard from "@/components/ProductCard"
@@ -129,7 +129,8 @@ const ProductDetails = async ({params: {id}} : Props) => {
       <div className="flex flex-col gap-5">
         <h3 className="text-2xl text-secondary font-semibold">Product Description</h3>
         <div className="flex flex-col gap-4">
-          {product?.description?.split("\n")}
+          {/* {product?.description?.split("\n")} */}
+          {shortenedTextBySentence(product.description, 10)}
         </div>
         <button className="btn w-fit mx-auto flex items-center justify-center gap-3 min-w-[200px]">
           <Image

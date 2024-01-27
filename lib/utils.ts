@@ -111,3 +111,13 @@ export const formatNumber = (num: number = 0) => {
     maximumFractionDigits: 0,
   });
 };
+
+export const shortenedTextBySentence = (
+  originalText: string,
+  sentencesToKeep: number
+) => {
+  const sentences = originalText.split(/[.!?]+/);
+  const shortenedSentences = sentences.slice(0, sentencesToKeep);
+  const shortenedText = shortenedSentences.join('');
+  return shortenedText;
+};
