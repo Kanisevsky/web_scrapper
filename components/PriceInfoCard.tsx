@@ -17,6 +17,7 @@ function PriceInfoCard({title, iconSrc, value, borderColor}: Props) {
                 width={24}
                 height={24}
               />
+        <p className="text-2xl font-bold text-secondary">{value}</p>
       </div>
     </div>
   )
