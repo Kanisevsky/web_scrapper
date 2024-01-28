@@ -3,7 +3,7 @@ import { useState, Fragment } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
 import Image from 'next/image'
 function Modal() {
-  let [isOpen, setIsOpen] = useState(true)
+  let [isOpen, setIsOpen] = useState(false)
   const openModal = () => setIsOpen(true);
   const closeModal = () => setIsOpen(false);
   return (
@@ -58,10 +58,10 @@ function Modal() {
                         onClick={closeModal}
                       />
                   </div>
-                  <h4>
+                  <h4 className='dialog-head_text'>
                     Stay updated with product pricing alerts right in your inbox!
                   </h4>
-                  <p>Never miss a bargain again with our timely alerts!</p>
+                  <p className='text-sm text-gray-600 mt-2'>Never miss a bargain again with our timely alerts!</p>
                 </div>
                 <form className='flex flex-col mt-5 '>
                   <label
@@ -85,6 +85,10 @@ function Modal() {
                       className='dialog-input'
                     />
                   </div>
+                  <button
+                    type='submit'
+                    className='dialog-btn'
+                  >Track</button>
                 </form>
               </div>
             </Transition.Child>
