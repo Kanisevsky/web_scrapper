@@ -1,9 +1,19 @@
 "use client"
-import { useState, Fragment } from 'react'
+import { useState, Fragment, FormEvent } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
 import Image from 'next/image'
 function Modal() {
   let [isOpen, setIsOpen] = useState(false)
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [Email, setEmail] = useState("")
+  const handleSubmit =  async (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+
+    setIsSubmitting(false);
+    setEmail("");
+    closeModal()
+  }
   const openModal = () => setIsOpen(true);
   const closeModal = () => setIsOpen(false);
   return (
@@ -63,7 +73,7 @@ function Modal() {
                   </h4>
                   <p className='text-sm text-gray-600 mt-2'>Never miss a bargain again with our timely alerts!</p>
                 </div>
-                <form className='flex flex-col mt-5 '>
+                <form className='flex flex-col mt-5' onSubmit={handleSubmit}>
                   <label
                     htmlFor='email'
                     className='text-sm font-medium text-gray-700'
@@ -83,12 +93,15 @@ function Modal() {
                       id="email"
                       placeholder='Enter Your Email Address'
                       className='dialog-input'
+                      onChange={(e) => setEmail(e.target.value)}
                     />
                   </div>
                   <button
                     type='submit'
                     className='dialog-btn'
-                  >Track</button>
+                  >
+                    {isSubmitting ? "Submitting..." : "Track"}
+                  </button>
                 </form>
               </div>
             </Transition.Child>
